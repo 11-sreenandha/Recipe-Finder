@@ -34,7 +34,7 @@ For Hardware:
 For Software:
 
 # Installation
-```bash
+`bash
 # Clone the repository
 git clone https://github.com/your-github-repo/recipe-finder.git
 
@@ -42,7 +42,12 @@ git clone https://github.com/your-github-repo/recipe-finder.git
 cd recipe-finder
 
 # Open the project in your preferred editor (e.g., Visual Studio Code)
-code .
+
+# Run
+[commands]
+
+# Screenshots (Add at least 3)
+![ss](https://github.com/user-attachments/assets/ba25522b-2d98-4b06-ab09-a74f169d8db9)
 
 
 
