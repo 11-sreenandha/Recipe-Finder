@@ -33,18 +33,17 @@ For Hardware:
 ### Implementation
 For Software:
 
-# Installation
+## Installation
 `bash
-# Clone the repository
+## Clone the repository
 git clone https://github.com/your-github-repo/recipe-finder.git
 
-# Navigate into the project folder
+## Navigate into the project folder
 cd recipe-finder
 
-# Open the project in your preferred editor (e.g., Visual Studio Code)
+## Open the project in your preferred editor (e.g., Visual Studio Code)
 
-# Run
-[commands]
+
 
 # Screenshots (Add at least 3)
 ![ss](https://github.com/user-attachments/assets/ba25522b-2d98-4b06-ab09-a74f169d8db9)
