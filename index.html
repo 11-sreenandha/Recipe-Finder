@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+
+<div class="container">
+    <h1>Recipe Finder</h1>
+    <p>Enter ingredients separated by commas (e.g., chicken, rice, carrots):</p>
+    <input type="text" id="ingredientsInput" placeholder="Enter ingredients">
+    <button onclick="fetchRecipes()">Find Recipes</button>
+
+    <div id="recipesContainer"></div>
+</div>
+
+<script>
+    const API_KEY = 'd4aab5f8536841f186cf0cb0b87db0c4'; // Replace with your Spoonacular API key
+    const API_URL = 'https://api.spoonacular.com/recipes/complexSearch'; // Spoonacular API endpoint
+
+    async function fetchRecipes() {
+        const ingredients = document.getElementById('ingredientsInput').value.trim();
+
+        if (!ingredients) {
+            alert('Please enter some ingredients.');
+            return;
+        }
+
+        const query = ingredients.split(',').map(ingredient => ingredient.trim()).join(',');
+
+        try {
+            // Make the API request
+            const response = await fetch(`${API_URL}?query=${query}&apiKey=${API_KEY}`);
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch recipes');
+            }
+
+            const data = await response.json();
+            displayRecipes(data.results); // Spoonacular API returns a "results" field
+        } catch (error) {
+            alert('Error fetching recipes: ' + error.message);
+        }
+    }
+
+    function displayRecipes(recipes) {
+        const recipesContainer = document.getElementById('recipesContainer');
+        recipesContainer.innerHTML = ''; // Clear previous results
+
+        if (recipes && recipes.length > 0) {
+    recipes.forEach(recipe => {
+        const recipeDiv = document.createElement('div');
+        recipeDiv.classList.add('recipe');
+
+        recipeDiv.innerHTML = `
+            <h3>${recipe.title}</h3>
+            <img src="${recipe.image}" alt="${recipe.title}" style="width:100px;height:100px;">
+            <p><strong>Instructions:</strong> 
+                <!-- Link to the Spoonacular recipe page -->
+                <a href="https://spoonacular.com/recipes/${recipe.title.replace(/ /g, '-')}-${recipe.id}" target="_blank">View Recipe</a>
+            </p>
+        `;
+
+        recipesContainer.appendChild(recipeDiv);
+    });
+} else {
+    recipesContainer.innerHTML = '<p>No recipes found. Please try different ingredients.</p>';
+}
+
+    }
+</script>
+
+</body>
+</html>
